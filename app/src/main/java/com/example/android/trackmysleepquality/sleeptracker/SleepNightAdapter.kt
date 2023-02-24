@@ -1,13 +1,17 @@
 package com.example.android.trackmysleepquality.sleeptracker
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.trackmysleepquality.R
+import com.example.android.trackmysleepquality.convertDurationToFormatted
+import com.example.android.trackmysleepquality.convertNumericQualityToString
 import com.example.android.trackmysleepquality.database.SleepNight
 
-class SleepNightAdapter : RecyclerView.Adapter<SleepNightAdapter.TextItemViewHolder>() {
+class SleepNightAdapter : RecyclerView.Adapter<SleepNightAdapter.ViewHolder>() {
 
     var data = listOf<SleepNight>()
         set(value) {
@@ -15,19 +19,29 @@ class SleepNightAdapter : RecyclerView.Adapter<SleepNightAdapter.TextItemViewHol
             notifyDataSetChanged()
         }
 
-    class TextItemViewHolder(val textView: TextView) : RecyclerView.ViewHolder(textView)
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val sleepLength: TextView = itemView.findViewById(R.id.sleep_length)
+        val quality: TextView = itemView.findViewById(R.id.quality_string)
+        val qualityImage: ImageView = itemView.findViewById(R.id.quality_image)
+    }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TextItemViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val view = layoutInflater
-            .inflate(R.layout.text_item_view, parent, false) as TextView
-        return TextItemViewHolder(view)
+            .inflate(R.layout.list_item_sleep_night, parent, false) as View
+        return ViewHolder(view)
     }
 
     override fun getItemCount() = data.size
 
-    override fun onBindViewHolder(holder: TextItemViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
-        holder.textView.text = item.sleepQuality.toString()
+        val res = holder.itemView.context.resources
+        holder.sleepLength.text =
+            convertDurationToFormatted(item.startTimeMilli, item.endTimeMilli, res)
+        holder.quality.text = convertNumericQualityToString(item.sleepQuality, res)
+        holder.qualityImage.setImageResource(
+            R.drawable.ic_sleep_0
+        )
     }
 }
