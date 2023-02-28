@@ -47,6 +47,7 @@ class SleepTrackerViewModel(
     val startButtonVisible = Transformations.map(tonight) {
         it == null
     }
+
     val stopButtonVisible = Transformations.map(tonight) {
         it != null
     }
@@ -88,7 +89,8 @@ class SleepTrackerViewModel(
     fun onStopTracking() {
         viewModelScope.launch {
             val oldNight = tonight.value ?: return@launch
-            val newNight = oldNight.copy(System.currentTimeMillis())
+            val newNight = oldNight.copy(endTimeMilli = System.currentTimeMillis())
+//            oldNight.endTimeMilli = System.currentTimeMillis()
             update(newNight)
             _navigateToSleepQuality.value = oldNight
         }
