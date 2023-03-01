@@ -37,6 +37,7 @@ private const val SPAN_COUNT = 3
  * a database. Cumulative data is displayed in a simple scrollable TextView.
  * (Because we have not learned about RecyclerView yet.)
  */
+@Suppress("LongMethod")
 class SleepTrackerFragment : Fragment() {
 
     /**
@@ -104,6 +105,13 @@ class SleepTrackerFragment : Fragment() {
             }
         )
         val manager = GridLayoutManager(activity, SPAN_COUNT, GridLayoutManager.VERTICAL, false)
+        manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            @Suppress("MagicNumber")
+            override fun getSpanSize(position: Int) = when (position) {
+                0 -> 3
+                else -> 1
+            }
+        }
         binding.sleepList.layoutManager = manager
         return binding.root
     }
