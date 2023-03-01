@@ -25,9 +25,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.android.trackmysleepquality.R
 import com.example.android.trackmysleepquality.database.SleepDatabase
 import com.example.android.trackmysleepquality.databinding.FragmentSleepTrackerBinding
+
+private const val SPAN_COUNT = 3
 
 /**
  * A fragment with buttons to record start and end times for sleep, which are saved in
@@ -86,6 +89,8 @@ class SleepTrackerFragment : Fragment() {
                 }
             }
         )
+        val manager = GridLayoutManager(activity, SPAN_COUNT, GridLayoutManager.VERTICAL, false)
+        binding.sleepList.layoutManager = manager
         return binding.root
     }
 }
