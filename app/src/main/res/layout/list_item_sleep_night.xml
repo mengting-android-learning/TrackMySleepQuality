@@ -7,12 +7,16 @@
         <variable
             name="sleep"
             type="com.example.android.trackmysleepquality.database.SleepNight"/>
+        <variable
+            name="clickListener"
+            type="com.example.android.trackmysleepquality.sleeptracker.SleepNightListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/item_sleep_night">
+        android:id="@+id/item_sleep_night"
+        android:onClick="@{() -> clickListener.onClick(sleep)}">
 
 
 

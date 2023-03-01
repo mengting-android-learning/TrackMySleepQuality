@@ -30,6 +30,7 @@ import kotlinx.coroutines.launch
 /**
  * ViewModel for SleepTrackerFragment.
  */
+@Suppress("TooManyFunctions")
 class SleepTrackerViewModel(
     val database: SleepDatabaseDao,
     application: Application
@@ -109,5 +110,17 @@ class SleepTrackerViewModel(
 
     suspend fun clear() {
         database.clear()
+    }
+
+    private val _navigateToSleepDetail = MutableLiveData<Long>()
+    val navigateToSleepDetail
+        get() = _navigateToSleepDetail
+
+    fun onSleepNightClicked(id: Long) {
+        _navigateToSleepDetail.value = id
+    }
+
+    fun onSleepDetailNavigated() {
+        _navigateToSleepDetail.value = null
     }
 }
