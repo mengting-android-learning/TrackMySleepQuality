@@ -30,9 +30,17 @@ import java.util.concurrent.TimeUnit
 /**
  * These functions create a formatted string that can be set in a TextView.
  */
-private const val PRETTY_GOOD_QUALITY = 4
+private const val VERY_BAD = 0
 
-private const val EXCELLENT_QUALITY = 5
+private const val POOR = 1
+
+private const val SO_SO = 2
+
+private const val OK = 3
+
+private const val PRETTY_GOOD = 4
+
+private const val EXCELLENT = 5
 
 private val ONE_MINUTE_MILLIS = TimeUnit.MILLISECONDS.convert(1, TimeUnit.MINUTES)
 private val ONE_HOUR_MILLIS = TimeUnit.MILLISECONDS.convert(1, TimeUnit.HOURS)
@@ -44,11 +52,12 @@ fun convertNumericQualityToString(quality: Int, resources: Resources): String {
     var qualityString = resources.getString(R.string.three_ok)
     when (quality) {
         -1 -> qualityString = "--"
-        0 -> qualityString = resources.getString(R.string.zero_very_bad)
-        1 -> qualityString = resources.getString(R.string.one_poor)
-        2 -> qualityString = resources.getString(R.string.two_soso)
-        PRETTY_GOOD_QUALITY -> qualityString = resources.getString(R.string.four_pretty_good)
-        EXCELLENT_QUALITY -> qualityString = resources.getString(R.string.five_excellent)
+        VERY_BAD -> qualityString = resources.getString(R.string.zero_very_bad)
+        POOR -> qualityString = resources.getString(R.string.one_poor)
+        SO_SO -> qualityString = resources.getString(R.string.two_soso)
+        OK -> qualityString = resources.getString(R.string.three_ok)
+        PRETTY_GOOD -> qualityString = resources.getString(R.string.four_pretty_good)
+        EXCELLENT -> qualityString = resources.getString(R.string.five_excellent)
     }
     return qualityString
 }
