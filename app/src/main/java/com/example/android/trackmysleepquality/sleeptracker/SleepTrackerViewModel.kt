@@ -30,7 +30,6 @@ import kotlinx.coroutines.launch
 /**
  * ViewModel for SleepTrackerFragment.
  */
-@Suppress("TooManyFunctions")
 class SleepTrackerViewModel(
     val database: SleepDatabaseDao,
     application: Application

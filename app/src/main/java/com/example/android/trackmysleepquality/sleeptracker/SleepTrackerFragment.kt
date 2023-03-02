@@ -37,7 +37,6 @@ private const val SPAN_COUNT = 3
  * a database. Cumulative data is displayed in a simple scrollable TextView.
  * (Because we have not learned about RecyclerView yet.)
  */
-@Suppress("LongMethod")
 class SleepTrackerFragment : Fragment() {
 
     /**
@@ -70,7 +69,7 @@ class SleepTrackerFragment : Fragment() {
             }
         )
         binding.sleepList.adapter = adapter
-        binding.setLifecycleOwner(this)
+        binding.lifecycleOwner = this
         binding.sleepTrackerViewModel = sleepTrackerViewModel
         sleepTrackerViewModel.nights.observe(
             viewLifecycleOwner,

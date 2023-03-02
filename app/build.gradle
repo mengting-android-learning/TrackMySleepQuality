@@ -87,11 +87,6 @@ dependencies {
 
 detekt {
     autoCorrect = true
-}
-
-android {
-    sourceSets {
-        getByName("main").java.srcDirs("build/generated/source/navigation-args")
-    }
+    baseline = file("${rootProject.projectDir}/baseline.xml")
 }
 

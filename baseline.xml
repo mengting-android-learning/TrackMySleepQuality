@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>LongMethod:SleepTrackerFragment.kt$SleepTrackerFragment$override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View?</ID>
+    <ID>TooManyFunctions:SleepTrackerViewModel.kt$SleepTrackerViewModel : AndroidViewModel</ID>
+  </CurrentIssues>
+</SmellBaseline>
